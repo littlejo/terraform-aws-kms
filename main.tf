@@ -45,7 +45,7 @@ data "aws_iam_policy_document" "this" {
 }
 
 resource "aws_kms_key" "this" {
-  description         = "EKS Workers FluentBit CloudWatch Log group KMS Key"
+  description         = var.description
   policy              = data.aws_iam_policy_document.this.json
   enable_key_rotation = true
 }

@@ -12,3 +12,8 @@ variable "kms_alias" {
   description = "Alias name of kms"
   type        = string
 }
+
+variable "description" {
+  description = "Description of kms"
+  type        = string
+}
