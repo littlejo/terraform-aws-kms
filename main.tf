@@ -42,6 +42,25 @@ data "aws_iam_policy_document" "this" {
       identifiers = ["logs.eu-west-3.amazonaws.com"]
     }
   }
+
+  statement {
+    sid       = "Enable Encryption for sso user"
+    effect    = "Allow"
+    resources = ["*"]
+
+    actions = [
+      "kms:Decrypt*",
+      "kms:Describe*",
+      "kms:Encrypt*",
+      "kms:GenerateDataKey*",
+      "kms:ReEncrypt*",
+    ]
+
+    principals {
+      type        = "AWS"
+      identifiers = ["arn:aws:iam::*:role/aws-reserved/sso.amazonaws.com/*"]
+    }
+  }
 }
 
 resource "aws_kms_key" "this" {
